@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/user/test"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"username\":\"test\",\"date\":1234567890}"
+  }
+}
