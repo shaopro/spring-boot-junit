@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -23,11 +25,12 @@ import java.util.Date;
  */
 
 @RestController
+@RequestMapping("/index")
 public class JunitController {
 
-    @GetMapping("/user")
-    public UserDTO get() {
-        return UserDTO.builder().username("TestName").date(new Date()).build();
+    @GetMapping("/user/{id}")
+    public UserDTO get(@PathVariable String id) {
+        return UserDTO.builder().username("TestName:" + id).date(new Date()).build();
     }
 
     @PostMapping("/user")
