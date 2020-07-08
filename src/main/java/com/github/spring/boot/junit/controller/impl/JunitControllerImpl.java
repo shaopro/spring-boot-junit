@@ -1,5 +1,6 @@
-package com.github.spring.boot.junit.controller;
+package com.github.spring.boot.junit.controller.impl;
 
+import com.github.spring.boot.junit.controller.IJunitController;
 import com.github.spring.boot.junit.pojo.UserDTO;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -21,26 +23,29 @@ import java.util.Date;
  * @version 0.0.1
  * @since 0.0.1
  */
-
+@RequestMapping("/test")
 @RestController
-public class JunitController {
+public class JunitControllerImpl implements IJunitController {
 
-    @GetMapping("/user")
+    @Override
     public UserDTO get() {
         return UserDTO.builder().username("TestName").date(new Date()).build();
     }
 
     @PostMapping("/user")
+    @Override
     public UserDTO post(@RequestBody UserDTO user) {
         return user;
     }
 
     @PutMapping("/user")
+    @Override
     public UserDTO put(@RequestBody UserDTO user) {
         return user;
     }
 
     @DeleteMapping("/user/{username}")
+    @Override
     public String delete(@PathVariable String username) {
         return username;
     }
