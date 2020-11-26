@@ -2,6 +2,7 @@ package com.github.spring.boot.junit.controller.impl;
 
 import com.github.spring.boot.junit.controller.IJunitController;
 import com.github.spring.boot.junit.pojo.UserDTO;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -23,32 +25,16 @@ import java.util.Date;
  * @version 0.0.1
  * @since 0.0.1
  */
-@RequestMapping("/test")
+
 @RestController
 public class JunitControllerImpl implements IJunitController {
 
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
+
+    @GetMapping("/user/{key}")
     @Override
-    public UserDTO get() {
-        return UserDTO.builder().username("TestName").date(new Date()).build();
+    public String get(@PathVariable String key) {
+        return redisTemplate.opsForValue().get(key);
     }
-
-    @PostMapping("/user")
-    @Override
-    public UserDTO post(@RequestBody UserDTO user) {
-        return user;
-    }
-
-    @PutMapping("/user")
-    @Override
-    public UserDTO put(@RequestBody UserDTO user) {
-        return user;
-    }
-
-    @DeleteMapping("/user/{username}")
-    @Override
-    public String delete(@PathVariable String username) {
-        return username;
-    }
-
-
 }
