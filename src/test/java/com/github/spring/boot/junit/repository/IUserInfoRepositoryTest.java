@@ -3,6 +3,8 @@ package com.github.spring.boot.junit.repository;
 import com.github.spring.boot.junit.pojo.UserInfoDO;
 import org.jetbrains.annotations.NotNull;
 import org.junit.ClassRule;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -38,8 +40,15 @@ class IUserInfoRepositoryTest {
     @Resource
     private IUserInfoRepository repository;
 
+    @BeforeEach
+    public void beforeEach() {
+        UserInfoDO userInfo = UserInfoDO.builder().username("TestName").password("TestPassword").build();
+        repository.save(userInfo);
+    }
+
     @Test
     void saveOne() {
+        Assertions.assertEquals(1, repository.findAll().size());
         repository.findAll().forEach(System.out::println);
     }
 
