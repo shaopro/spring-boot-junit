@@ -2,22 +2,17 @@ package com.github.spring.boot.junit.repository;
 
 import com.github.spring.boot.junit.pojo.UserInfoDO;
 import org.jetbrains.annotations.NotNull;
-import org.junit.ClassRule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.annotation.Resource;
-import java.util.function.Consumer;
 
 
 @Testcontainers
@@ -42,7 +37,10 @@ class IUserInfoRepositoryTest {
 
     @BeforeEach
     public void beforeEach() {
-        UserInfoDO userInfo = UserInfoDO.builder().username("TestName").password("TestPassword").build();
+        UserInfoDO userInfo = UserInfoDO.builder()
+                .username("TestName")
+                .password("TestPassword")
+                .build();
         repository.save(userInfo);
     }
 
