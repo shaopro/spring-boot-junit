@@ -48,7 +48,7 @@ public class JunitControllerImplTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void get() throws Exception{
+    public void get() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/user"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -72,7 +72,7 @@ public class JunitControllerImplTest {
     }
 
     @Test
-    public void put() throws Exception  {
+    public void put() throws Exception {
         UserDTO user = UserDTO.builder().username("PutUser").date(new Date()).build();
         mockMvc.perform(MockMvcRequestBuilders.put("/user")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -85,7 +85,7 @@ public class JunitControllerImplTest {
     }
 
     @Test
-    public void delete()  throws Exception {
+    public void delete() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/user/use1").contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())

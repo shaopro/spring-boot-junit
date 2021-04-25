@@ -27,12 +27,9 @@ class PhoneCard {
     boolean performConnection(long cn, int pw) {
 
 //        __________________________________
-        if((cn == cardNumber) && (pw == password))
-        {
+        if ((cn == cardNumber) && (pw == password)) {
             connected = true;
-        }
-		else
-        {
+        } else {
             connected = false;
         }
         //__________________________________
@@ -46,7 +43,7 @@ class PhoneCard {
 
     void performDial() {
         if (connected) {
-            balance = balance -0.5;
+            balance = balance - 0.5;
             //	______________________________
         }
 
